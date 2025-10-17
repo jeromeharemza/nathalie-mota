@@ -1,0 +1,47 @@
+# =========================================================
+# .gitignore créé par Jérôme Haremza
+# Projet : Portfolio photographe "Nathalie Mota"
+# Objectif : garder le dépôt Git propre et professionnel
+# =========================================================
+
+# --- Fichiers  (macOS / Windows) ---
+.DS_Store
+Thumbs.db
+Desktop.ini
+
+# --- Dossiers de configuration d’éditeur ---
+.vscode/
+.idea/
+
+# --- Fichiers temporaires et logs ---
+*.log
+*.tmp
+.cache/
+.sass-cache/
+
+# --- Dossiers générés automatiquement (builds, dépendances) ---
+node_modules/
+vendor/
+dist/
+build/
+
+# --- Sauvegardes ou versions temporaires ---
+*.bak
+*.orig
+*.swp
+
+# --- Archives ou exports ---
+*.zip
+*.tar
+*.gz
+
+# --- Fichiers d’environnement (non versionnés) ---
+.env
+.env.*
+
+# --- Dossiers WordPress à exclure (hors thème enfant) ---
+wp-admin/
+wp-includes/
+wp-content/cache/
+wp-content/upgrade/
+wp-content/uploads/
