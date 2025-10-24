@@ -1,0 +1,97 @@
+/* Layout */
+.container { 
+  max-width:1200px;
+   margin:0 auto; 
+   padding:0 24px; }
+
+/* Header */
+.site-header {
+   position:sticky; top:0;
+   z-index:50; background:#fff; 
+   border-bottom:1px solid #eee; }
+
+   .header-inner {
+   display:flex;
+   align-items:center;
+   justify-content:space-between;
+  gap:16px;
+  padding:14px 0; }
+
+.branding .site-title {
+   font-weight:700; 
+font-size:1.25rem; 
+color:#111;
+text-decoration:none; }
+
+.custom-logo {
+  width: 100%;
+  max-width: 300px;
+  height: auto;
+}
+
+
+/* Nav */
+.main-navigation {
+   display:flex;
+   }
+.main-navigation ul { 
+  list-style:none; 
+  margin:0; padding:0; 
+  display:flex; 
+  gap:24px; }
+.main-navigation a { text-decoration:none;
+   color:#111;
+    font-weight:500; }
+.main-navigation a:hover { 
+  opacity:.7;
+ }
+
+
+ 
+/* footer */
+
+
+:root {
+  --footer-bg: #ffffff;     /* light gray background */
+  --footer-text: #111;      /* dark text */
+}
+
+.site-footer .footer-bar {
+background: #fff; 
+border-top: none; 
+border-bottom: none; 
+display: flex;
+align-items: center;
+justify-content: center;
+}
+.site-footer .footer-menu {
+  list-style: none;
+  display: flex;
+  gap: clamp(16px, 6vw, 72px);
+  margin: 0;
+  padding: 6px 16px;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  font-weight: 500;
+}
+
+.site-footer .footer-menu a {
+  color: var(--footer-text);
+  text-decoration: none;
+  outline-offset: 3px;
+}
+
+.site-footer .footer-menu a:hover,
+.site-footer .footer-menu a:focus {
+  text-decoration: underline;
+}
+
+/* Responsive: stack items on smaller screens */
+@media (max-width: 520px) {
+  .site-footer .footer-menu {
+    flex-wrap: wrap;
+    gap: 12px 24px;
+    justify-content: center;
+  }
+}
+
