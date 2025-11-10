@@ -4,8 +4,7 @@
 
 console.log('[nm] scripts.js chargé');
 
-(function () {
-  const openers = document.querySelectorAll('[data-modal-open]');
+document.addEventListener('DOMContentLoaded', function () {
   const body = document.body;
   let lastFocused = null;
 
@@ -61,44 +60,40 @@ console.log('[nm] scripts.js chargé');
       closeModal(document.querySelector('.nm-modal.is-open'));
     }
   }
-  
-  
-// OUVERTURE + FERMETURE (un seul listener)
-document.addEventListener('click', (e) => {
-  // ---- OUVERTURE ----
-  const opener = e.target.closest('li.js-modal-contact > a, a.js-modal-contact, [data-modal-open]');
-  if (opener) {
-    // Empêche la navigation si c'est un lien
-    if (opener.matches('a')) e.preventDefault();
 
-    const id = opener.getAttribute('data-modal-open') || 'modal-contact';
-    openModal(id);
-    return; // éviter de tomber sur la suite (fermeture) au même clic
-  }
-
-  // ---- FERMETURE (croix, backdrop, clic hors dialog) ----
-  const closer = e.target.closest('[data-modal-close], .nm-modal__backdrop');
-  if (closer) {
-    const modal = closer.closest('.nm-modal');
-    closeModal(modal);
-    return;
-  }
-
-  // Clic à l'intérieur de la modale mais en dehors du dialog
-  const opened = document.querySelector('.nm-modal.is-open');
-  if (opened) {
-    const dialog = opened.querySelector('.nm-modal__dialog');
-    if (dialog && opened.contains(e.target) && !dialog.contains(e.target)) {
-      closeModal(opened);
+  // OUVERTURE + FERMETURE 
+  document.addEventListener('click', (e) => {
+    // ---- OUVERTURE ----
+    const opener = e.target.closest('li.js-modal-contact a, a.js-modal-contact, [data-modal-open]');
+    if (opener) {
+      if (opener.matches('a')) e.preventDefault();
+      const id = opener.getAttribute('data-modal-open') || 'modal-contact';
+      openModal(id);
+      return; 
     }
-  }
-});
 
-// Échap global (au cas où)
-document.addEventListener('keydown', (e) => {
-  if (e.key === 'Escape') {
+    // ---- FERMETURE (croix, backdrop, clic hors dialog) ----
+    const closer = e.target.closest('[data-modal-close], .nm-modal__backdrop');
+    if (closer) {
+      const modal = closer.closest('.nm-modal');
+      closeModal(modal);
+      return;
+    }
+
     const opened = document.querySelector('.nm-modal.is-open');
-    if (opened) closeModal(opened);
-  }
+    if (opened) {
+      const dialog = opened.querySelector('.nm-modal__dialog');
+      if (dialog && opened.contains(e.target) && !dialog.contains(e.target)) {
+        closeModal(opened);
+      }
+    }
+  });
+
+  // Échap global 
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') {
+      const opened = document.querySelector('.nm-modal.is-open');
+      if (opened) closeModal(opened);
+    }
+  });
 });
-})(); 
