@@ -82,7 +82,7 @@ while (have_posts()) : the_post();
     </button>
     <div class="nm-nav__preview">
       <?php
-      $next_post = get_next_post(true, '', 'categorie');
+      $next_post = get_next_post(false, '', 'categorie');
       if ($next_post && has_post_thumbnail($next_post->ID)) : ?>
         <img src="<?php echo get_the_post_thumbnail_url($next_post->ID, 'thumbnail'); ?>"
              alt="Aperçu photo suivante">
@@ -92,7 +92,7 @@ while (have_posts()) : the_post();
   <div class="nm-photo__navigation">
     <div class="nm-nav__arrows">
       <?php
-      $prev_post = get_previous_post(true, '', 'categorie');
+      $prev_post = get_previous_post(false, '', 'categorie');
       if ($prev_post) : ?>
         <a href="<?php echo get_permalink($prev_post); ?>" class="nm-nav__link">←</a>
       <?php endif; ?>
@@ -124,13 +124,7 @@ while (have_posts()) : the_post();
       'no_found_rows' => true,
     ];
     
-    if (!empty($cat_ids)) {
-      $related_args['tax_query'] = [[
-        'taxonomy' => 'categorie',
-        'field' => 'term_id',
-        'terms' => $cat_ids,
-      ]];
-    }
+   
     
     $related_query = new WP_Query($related_args);
     
