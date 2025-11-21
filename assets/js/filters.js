@@ -1,10 +1,12 @@
 console.log('[nm] filters.js chargé');
 
 document.addEventListener("DOMContentLoaded", function () {
-    
+
     const gallery = document.querySelector("#gallery");
 
-    // Gestion des selects personnalisés
+    // ===============================
+    // Gestion des SELECTS PERSONNALISÉS
+    // ===============================
     const customSelects = document.querySelectorAll('.custom-select');
 
     customSelects.forEach(select => {
@@ -15,16 +17,16 @@ document.addEventListener("DOMContentLoaded", function () {
         const hiddenInput = select.closest('.custom-select-wrapper').querySelector('input[type="hidden"]');
         const selectName = select.getAttribute('data-name');
 
+        // Noms des filtres (attention : categorie ≠ category)
         const defaultTexts = {
-            'category': 'Catégories',
+            'categorie': 'Catégorie',
             'format': 'Formats',
             'order': 'Trier par'
         };
 
         const defaultText = defaultTexts[selectName] || 'Sélectionner';
 
-
-        // Ouverture/fermeture du menu
+        // OUVERTURE / FERMETURE DU MENU
         trigger.addEventListener('click', function (e) {
             e.stopPropagation();
             customSelects.forEach(s => {
@@ -33,8 +35,7 @@ document.addEventListener("DOMContentLoaded", function () {
             select.classList.toggle('open');
         });
 
-
-        // Réinitialisation si on clique sur le conteneur blanc
+        // RESET si clic sur le blanc du menu
         optionsContainer.addEventListener('click', function (e) {
             if (e.target === optionsContainer) {
                 e.stopPropagation();
@@ -50,8 +51,7 @@ document.addEventListener("DOMContentLoaded", function () {
             }
         });
 
-
-        // Sélection d'une option
+        // SELECTION D'UNE OPTION
         options.forEach(option => {
             option.addEventListener('click', function (e) {
                 e.stopPropagation();
@@ -59,12 +59,14 @@ document.addEventListener("DOMContentLoaded", function () {
                 const value = this.getAttribute('data-value');
                 const text = this.textContent;
 
-                // Si on clique sur la première ligne => reset
+                // Reset
                 if (!value) {
                     hiddenInput.value = '';
                     trigger.querySelector('span').textContent = defaultText;
+
                     options.forEach(opt => opt.classList.remove('selected'));
                     select.classList.remove('open');
+
                     filterPhotos();
                     return;
                 }
@@ -83,29 +85,54 @@ document.addEventListener("DOMContentLoaded", function () {
 
     });
 
-    // Fermer les dropdowns en cliquant ailleurs sur la page
+    // Fermer les menus en cliquant ailleurs
     document.addEventListener('click', function () {
         customSelects.forEach(select => select.classList.remove('open'));
     });
 
-
-    /**
-     * Filtrage = recharger la page avec paramètres GET
-     */
-    function filterPhotos() {
-
-        const category = document.querySelector('#nm-category').value;
-        const format = document.querySelector('#nm-format').value;
-        const order = document.querySelector('#nm-order').value;
-
-        const params = new URLSearchParams();
-
-        if (category) params.append('category', category);
-        if (format) params.append('format', format);
-        if (order) params.append('order', order);
-
-        // Recharge la page avec les filtres
-        window.location.search = params.toString();
-    }
-
 });
+
+function filterPhotos() {
+
+    const category = document.querySelector('#nm-categorie').value;
+    const format = document.querySelector('#nm-format').value;
+    const order = document.querySelector('#nm-order').value;
+
+    const gallery = document.querySelector('#gallery');
+
+    jQuery.ajax({
+        url: nmAjax.ajaxurl,
+        type: 'POST',
+        data: {
+            action: 'nm_filter_photos',
+            nonce: nmAjax.nonce,
+            page: 1,
+            category: category,
+            format: format,
+            order: order
+        },
+        success: function(response) {
+
+            if (!response.success) {
+                return;
+            }
+
+            // On remplace directement la galerie sans faire remonter
+            gallery.innerHTML = response.data.html;
+
+            // Mise à jour du bouton Load More
+            const btn = jQuery('.nm-home-loadmore');
+            btn.data('page', 1);
+            btn.data('category', category);
+            btn.data('format', format);
+            btn.data('order', order);
+            btn.show();
+        },
+
+        error: function() {
+            console.error('Erreur AJAX');
+        }
+    });
+}
+
+
