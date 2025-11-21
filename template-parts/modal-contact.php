@@ -22,7 +22,11 @@
     </button>
 
     
-    <h2 id="modal-contact-title" class="nm-modal__title">Contact</h2>
+ <h2 id="modal-contact-title" class="nm-modal__title">
+  <img src="http://nathalie-mota.local/wp-content/uploads/2025/11/Contact-header.png" alt="Contact">
+  <span class="screen-reader-text">CONTACT</span>
+</h2>
+
 
   
     <div class="nm-modal__body">

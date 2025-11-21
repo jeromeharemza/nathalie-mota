@@ -61,33 +61,49 @@ document.addEventListener('DOMContentLoaded', function () {
     }
   }
 
-  // OUVERTURE + FERMETURE 
-  document.addEventListener('click', (e) => {
-    // ---- OUVERTURE ----
-    const opener = e.target.closest('li.js-modal-contact a, a.js-modal-contact, [data-modal-open]');
-    if (opener) {
-      if (opener.matches('a')) e.preventDefault();
-      const id = opener.getAttribute('data-modal-open') || 'modal-contact';
-      openModal(id);
-      return; 
+// OUVERTURE + FERMETURE 
+document.addEventListener('click', (e) => {
+  // ---- OUVERTURE ----
+  const opener = e.target.closest('li.js-modal-contact a, a.js-modal-contact, [data-modal-open], .nm-open-contact');
+  if (opener) {
+    if (opener.matches('a')) e.preventDefault();
+    const id = opener.getAttribute('data-modal-open') || 'modal-contact';
+    
+    // Récupérer la référence depuis l'attribut data-photo-ref
+    const photoRef = opener.getAttribute('data-photo-ref');
+    
+    openModal(id);
+    
+    // Pré-remplir le champ après l'ouverture du modal
+    if (photoRef) {
+      setTimeout(function() {
+        const refInput = document.querySelector('input[name="your-subject"]');
+        if (refInput) {
+          refInput.value = photoRef;
+          refInput.dispatchEvent(new Event('input', { bubbles: true }));
+        }
+      }, 100);
     }
+    return; 
+  }
 
-    // ---- FERMETURE (croix, backdrop, clic hors dialog) ----
-    const closer = e.target.closest('[data-modal-close], .nm-modal__backdrop');
-    if (closer) {
-      const modal = closer.closest('.nm-modal');
-      closeModal(modal);
-      return;
-    }
+  // ---- FERMETURE (croix, backdrop, clic hors dialog) ----
+  const closer = e.target.closest('[data-modal-close], .nm-modal__backdrop');
+  if (closer) {
+    const modal = closer.closest('.nm-modal');
+    closeModal(modal);
+    return;
+  }
 
-    const opened = document.querySelector('.nm-modal.is-open');
-    if (opened) {
-      const dialog = opened.querySelector('.nm-modal__dialog');
-      if (dialog && opened.contains(e.target) && !dialog.contains(e.target)) {
-        closeModal(opened);
-      }
+  const opened = document.querySelector('.nm-modal.is-open');
+  if (opened) {
+    const dialog = opened.querySelector('.nm-modal__dialog');
+    if (dialog && opened.contains(e.target) && !dialog.contains(e.target)) {
+      closeModal(opened);
     }
-  });
+  }
+});
+
 
   // Échap global 
   document.addEventListener('keydown', (e) => {
@@ -96,4 +112,26 @@ document.addEventListener('DOMContentLoaded', function () {
       if (opened) closeModal(opened);
     }
   });
+
+  // Récupérer la référence depuis l'attribut data
+  const reference = this.getAttribute('data-reference');
+  
+  // Ouvrir la modale
+  if (modal) {
+    modal.style.display = 'flex';
+    modal.classList.add('active');
+    document.body.style.overflow = 'hidden';
+    
+    // Pré-remplir le champ "réf photo" (your-subject)
+    setTimeout(function() {
+      const refInput = document.querySelector('input[name="your-subject"]');
+      
+      if (refInput && reference) {
+        refInput.value = reference;
+        
+        // Déclencher un événement pour que CF7 détecte le changement
+        refInput.dispatchEvent(new Event('input', { bubbles: true }));
+      }
+    }, 200);
+  }
 });

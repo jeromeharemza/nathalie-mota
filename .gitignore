@@ -19,7 +19,7 @@ Desktop.ini
 .cache/
 .sass-cache/
 
-# --- Dossiers générés automatiquement (builds, dépendances) ---
+# --- Dossiers générés automatiquement  ---
 node_modules/
 vendor/
 dist/
@@ -35,11 +35,11 @@ build/
 *.tar
 *.gz
 
-# --- Fichiers d’environnement (non versionnés) ---
+# --- Fichiers d’environnement ---
 .env
 .env.*
 
-# --- Dossiers WordPress à exclure (hors thème enfant) ---
+# --- Dossiers WordPress à exclure  ---
 wp-admin/
 wp-includes/
 wp-content/cache/

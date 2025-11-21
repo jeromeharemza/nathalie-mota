@@ -1,0 +1,18 @@
+[33m51db2d6[m[33m ([m[1;36mHEAD[m[33m, [m[1;31morigin/master[m[33m, [m[1;31morigin/HEAD[m[33m)[m HEAD@{0}: pull origin master --rebase (start): checkout 51db2d6dd45a6f4725c35a98ef7367964f4c912c
+[33mb32b253[m[33m ([m[1;32mmaster[m[33m)[m HEAD@{1}: commit: Fix filters + clean JS + rebind remote
+[33m587970c[m HEAD@{2}: commit: feat(template): ajouter le template part 'bloc_photo'
+[33mec74c8e[m HEAD@{3}: commit: Fix: Correction de l'ouverture de la modale de contact
+[33m11bd38a[m HEAD@{4}: commit: feat: Création template part photo_block réutilisable Utilisé dans single-photo.php et sera réutilisé sur front-page.php
+[33m4f09765[m HEAD@{5}: commit: Préparation: enqueue CSS single-photo + détection JS jQuery à venir
+[33meb237be[m HEAD@{6}: commit: feat(modal): création du template HTML accessible pour la modale de contact avec intégration du formulaire Contact Form 7
+[33m289dcd1[m HEAD@{7}: commit: fix(modal): correction complète du script — fermeture fonctionnelle (croix, fond, clic extérieur, Échap) et suppression du doublon d'ouverture
+[33md7b69c7[m HEAD@{8}: commit: feat(scripts): ajout du fichier scripts.js pour la gestion de la modale de contact
+[33m44c4ada[m HEAD@{9}: commit: Ajout du header personnalisé avec logo, navigation et menu mobile
+[33m36cdf44[m HEAD@{10}: commit: Ajout responsive menu mobile
+[33mf6d45ea[m HEAD@{11}: commit: Ajout du script JavaScript pour la navigation responsive avec support de l’accessibilité
+[33m23c8ecc[m HEAD@{12}: commit: Ajout du fichier main.css avec la mise en page, l’en-tête, la navigation et le footer
+[33m8cb9a49[m HEAD@{13}: commit: Ajout du footer personnalisable via le menu administrable WordPress
+[33m84521c2[m HEAD@{14}: commit: Ajout de l’enregistrement du menu de pied de page dans le thème enfant
+[33m315f720[m HEAD@{15}: commit: Ajout du README
+[33maa51790[m HEAD@{16}: commit: Ajout du .gitignore
+[33m324d1a8[m HEAD@{17}: commit (initial): itialisation propre du thème enfant Nathalie Mota
