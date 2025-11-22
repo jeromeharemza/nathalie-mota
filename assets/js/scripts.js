@@ -113,25 +113,4 @@ document.addEventListener('click', (e) => {
     }
   });
 
-  // Récupérer la référence depuis l'attribut data
-  const reference = this.getAttribute('data-reference');
-  
-  // Ouvrir la modale
-  if (modal) {
-    modal.style.display = 'flex';
-    modal.classList.add('active');
-    document.body.style.overflow = 'hidden';
-    
-    // Pré-remplir le champ "réf photo" (your-subject)
-    setTimeout(function() {
-      const refInput = document.querySelector('input[name="your-subject"]');
-      
-      if (refInput && reference) {
-        refInput.value = reference;
-        
-        // Déclencher un événement pour que CF7 détecte le changement
-        refInput.dispatchEvent(new Event('input', { bubbles: true }));
-      }
-    }, 200);
-  }
 });

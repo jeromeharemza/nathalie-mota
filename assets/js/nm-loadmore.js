@@ -4,6 +4,11 @@ jQuery(document).ready(function($) {
     $('.nm-home-loadmore').on('click', function(e) {
         e.preventDefault();
 
+        // On récupère les filtres actifs
+        let category = $('#nm-categorie').val();
+        let format   = $('#nm-format').val();
+        let order    = $('#nm-order').val();
+
         $.ajax({
             url: nmLoadmore.ajaxurl,
             type: 'POST',
@@ -11,7 +16,10 @@ jQuery(document).ready(function($) {
             data: {
                 action: 'nm_loadmore_photos',
                 nonce: nmLoadmore.nonce,
-                paged: page
+                paged: page,
+                category: category,
+                format: format,
+                order: order
             },
             success: function(response) {
                 if(response.success) {

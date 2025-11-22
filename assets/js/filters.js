@@ -10,20 +10,19 @@ document.addEventListener("DOMContentLoaded", function () {
     const customSelects = document.querySelectorAll('.custom-select');
 
     customSelects.forEach(select => {
-
+        
         const trigger = select.querySelector('.custom-select-trigger');
         const options = select.querySelectorAll('.custom-option');
         const optionsContainer = select.querySelector('.custom-options');
         const hiddenInput = select.closest('.custom-select-wrapper').querySelector('input[type="hidden"]');
         const selectName = select.getAttribute('data-name');
 
-        // Noms des filtres (attention : categorie ≠ category)
+        // Labels 
         const defaultTexts = {
             'categorie': 'Catégorie',
             'format': 'Formats',
             'order': 'Trier par'
         };
-
         const defaultText = defaultTexts[selectName] || 'Sélectionner';
 
         // OUVERTURE / FERMETURE DU MENU
@@ -39,14 +38,10 @@ document.addEventListener("DOMContentLoaded", function () {
         optionsContainer.addEventListener('click', function (e) {
             if (e.target === optionsContainer) {
                 e.stopPropagation();
-
                 hiddenInput.value = '';
                 trigger.querySelector('span').textContent = defaultText;
-
                 options.forEach(opt => opt.classList.remove('selected'));
-
                 select.classList.remove('open');
-
                 filterPhotos();
             }
         });
@@ -59,45 +54,44 @@ document.addEventListener("DOMContentLoaded", function () {
                 const value = this.getAttribute('data-value');
                 const text = this.textContent;
 
-                // Reset
+                // Si reset 
                 if (!value) {
                     hiddenInput.value = '';
                     trigger.querySelector('span').textContent = defaultText;
-
                     options.forEach(opt => opt.classList.remove('selected'));
                     select.classList.remove('open');
-
                     filterPhotos();
                     return;
                 }
 
                 hiddenInput.value = value;
                 trigger.querySelector('span').textContent = text;
-
                 options.forEach(opt => opt.classList.remove('selected'));
                 this.classList.add('selected');
 
-                select.classList.remove('open');
+                // select
+                setTimeout(() => {
+                    this.classList.remove('selected');
+                }, 120);
 
+                select.classList.remove('open');
                 filterPhotos();
             });
-        });
+        }); 
 
     });
-
-    // Fermer les menus en cliquant ailleurs
+    
     document.addEventListener('click', function () {
         customSelects.forEach(select => select.classList.remove('open'));
     });
 
-});
+}); 
 
+//  Fonction globale AJAX
 function filterPhotos() {
-
     const category = document.querySelector('#nm-categorie').value;
     const format = document.querySelector('#nm-format').value;
     const order = document.querySelector('#nm-order').value;
-
     const gallery = document.querySelector('#gallery');
 
     jQuery.ajax({
@@ -112,15 +106,10 @@ function filterPhotos() {
             order: order
         },
         success: function(response) {
-
             if (!response.success) {
                 return;
             }
-
-            // On remplace directement la galerie sans faire remonter
             gallery.innerHTML = response.data.html;
-
-            // Mise à jour du bouton Load More
             const btn = jQuery('.nm-home-loadmore');
             btn.data('page', 1);
             btn.data('category', category);
@@ -128,11 +117,8 @@ function filterPhotos() {
             btn.data('order', order);
             btn.show();
         },
-
         error: function() {
             console.error('Erreur AJAX');
         }
     });
 }
-
-
