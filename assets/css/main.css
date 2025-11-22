@@ -180,8 +180,7 @@
 /* Select Trigger (bouton principal) */
 .custom-select-trigger {
   padding: 12px 15px;
-  background: white;
-  border: 1px solid #333;
+  border: 1px solid #B8BBC2;
   border-radius: 4px;
   cursor: pointer;
   display: flex;
@@ -194,14 +193,31 @@
 }
 
 .custom-select-trigger:hover {
-  border-color: #000;
+  border-color: #215AFF;
+  cursor: pointer;
 }
 
 .custom-select.open .custom-select-trigger {
   border-radius: 4px 4px 0 0;
   border-bottom: none;
 }
-
+.custom-select-options {
+  display: none;
+  position: absolute;
+  border: none;
+  border-top: none;
+  border-bottom-left-radius: 8px;
+  border-bottom-right-radius: 8px;
+  width: 100%;
+  padding: 10px 0;
+ 
+  z-index: 100;
+  margin-top: -2px;
+}
+.custom-select.open .custom-select-trigger {
+  border: 1px solid #3366ff;
+  border-radius: 4px;
+}
 /* Flèche */
 .arrow {
   width: 0;
@@ -223,7 +239,7 @@
   left: 0;
   right: 0;
   background: white;
-  border: 1px solid #333;
+ 
   border-top: none;
   border-radius: 0 0 4px 4px;
   max-height: 0;
@@ -252,11 +268,7 @@
   color: #000;
 }
 
-/* Option au survol - ROUGE */
-.custom-option:hover {
-  background: #C13030;
-  color: white;
-}
+
 
 
 
@@ -280,6 +292,13 @@
   background: #E00000; 
   color: white;
   font-weight: 400;
+}
+
+
+.custom-select-options li.active,
+.custom-select-options li.selected {
+  background-color: transparent !important;
+  color: #000 !important;
 }
 
 
