@@ -117,7 +117,7 @@ function nm_filter_photos_ajax() {
     $tax_query = [];
     if (!empty($category)) {
         $tax_query[] = [
-            'taxonomy' => 'category',
+            'taxonomy' => 'categorie',
             'field' => 'slug',
             'terms' => $category,
         ];
@@ -168,7 +168,7 @@ function nm_loadmore_photos_ajax() {
     $tax_query = [];
     if (!empty($category)) {
         $tax_query[] = [
-            'taxonomy' => 'category',
+            'taxonomy' => 'categorie',
             'field' => 'slug',
             'terms' => $category,
         ];

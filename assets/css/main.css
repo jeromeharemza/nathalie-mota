@@ -35,7 +35,7 @@
 }
 
 body {
-  font-family: 'Space Mono', monospace;
+  font-family: 'Space Mono', monospace !important;
 }
 
 /* Layout */
@@ -531,9 +531,9 @@ body {
 }
 .site-footer {
   width: 100vw;
-  border-top: 2px solid #111;         /* Barre fine, couleur personnalisable */
+  border-top: 1px solid #000000;        
   margin-top: 0;
-  padding-top: 20px;                  /* Optionnel : espace avant le contenu du footer */
+  padding-top: 20px;                  
 }
 .site-footer .footer-menu {
   list-style: none;

@@ -78,8 +78,10 @@ while (have_posts()) : the_post();
   <div class="nm-photo__cta-row">
     <span>Cette photo vous intéresse ?</span>
     <button class="nm-btn nm-open-contact" data-photo-ref="<?php echo esc_attr($reference); ?>">
-      Contact
-    </button>
+  Contact
+</button>
+<div class="sous-ligne-bouton"></div>
+
     <div class="nm-nav__preview">
       <?php
       $next_post = get_next_post(false, '', 'categorie');

@@ -25,7 +25,7 @@ $image_url = $hero_image_id ? wp_get_attachment_url($hero_image_id) : '';
 
       <!-- FILTRE CATÉGORIE -->
       <div class="custom-select-wrapper">
-        <div class="custom-select" data-name="category">
+        <div class="custom-select" data-name="categorie">
           <div class="custom-select-trigger">
             <span>Catégories</span>
             <div class="arrow"></div>
@@ -51,7 +51,7 @@ $image_url = $hero_image_id ? wp_get_attachment_url($hero_image_id) : '';
           </div>
         </div>
 
-        <input type="hidden" name="category" id="nm-category" value="">
+        <input type="hidden" name="categorie" id="nm-categorie">
       </div>
 
 
@@ -118,7 +118,7 @@ $image_url = $hero_image_id ? wp_get_attachment_url($hero_image_id) : '';
     <?php
     // GET PARAMS
     $order    = isset($_GET['order']) ? sanitize_text_field($_GET['order']) : '';
-    $category = isset($_GET['category']) ? sanitize_text_field($_GET['category']) : '';
+    $category = isset($_GET['categorie']) ? sanitize_text_field($_GET['categorie']) : '';
     $format   = isset($_GET['format']) ? sanitize_text_field($_GET['format']) : '';
 
     // BASE WP_QUERY
