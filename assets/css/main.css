@@ -1,11 +1,49 @@
+@font-face {
+  font-family: 'Space Mono';
+  src: url('../fonts/spacemono-regular-webfont.woff2') format('woff2'),
+       url('../fonts/spacemono-regular-webfont.woff') format('woff');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Space Mono';
+  src: url('../fonts/spacemono-italic-webfont.woff2') format('woff2'),
+       url('../fonts/spacemono-italic-webfont.woff') format('woff');
+  font-weight: 400;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Space Mono';
+  src: url('../fonts/spacemono-bold-webfont.woff2') format('woff2'),
+       url('../fonts/spacemono-bold-webfont.woff') format('woff');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Space Mono';
+  src: url('../fonts/spacemono-bolditalic-webfont.woff2') format('woff2'),
+       url('../fonts/spacemono-bolditalic-webfont.woff') format('woff');
+  font-weight: 700;
+  font-style: italic;
+  font-display: swap;
+}
+
+body {
+  font-family: 'Space Mono', monospace;
+}
+
 /* Layout */
 .container {
   max-width: 1200px;
   margin: 0 auto;
   padding: 0 24px;
 }
-
-
 
 .site-header {
   position: fixed;
@@ -26,7 +64,7 @@
 
 .custom-logo {
   width: 100%;
-  max-width: 220px;  /* Ajuste selon la taille voulue */
+  max-width: 230px;  
   height: auto;
   display: block;
 }
@@ -51,7 +89,6 @@
 .main-navigation a {
   text-decoration: none;
   color: #111;
-  font-family: 'Space Mono', monospace;
   font-size: 2rem;
   font-weight: 500;
   letter-spacing: 0.07em;
@@ -69,9 +106,7 @@
 .nm-home-hero {
   position: relative;
   width: 100vw;
-  /* Prend toute la largeur de la fenêtre */
   min-height: 60vh;
-  /* Prend au moins 60% de la hauteur de la fenêtre */
   max-height: 700px;
   display: flex;
   align-items: center;
@@ -98,7 +133,6 @@
 .nm-hero-title {
   position: relative;
   z-index: 2;
-  font-family: 'Space Mono', monospace;
   font-size: 97px;
   font-style: italic;
   font-weight: 700;
@@ -106,7 +140,7 @@
   text-transform: uppercase;
   letter-spacing: 0.12em;
   text-align: center;
-  -webkit-text-stroke: 3px #ffffff; /* contour bleu clair */
+  -webkit-text-stroke: 3px #ffffff;
 }
 
 
@@ -321,7 +355,6 @@
 }
 
 #nm-related-title {
-  font-family: 'Space Mono', monospace;
   font-size: clamp(1.5rem, 2.5vw, 2rem);
   font-weight: 400;
   text-transform: uppercase;
@@ -737,7 +770,6 @@ body.modal-open {
   transform: translateY(-50%);
   color: white;
   font-size: 14px;
-  font-family: 'Space Mono', monospace;
   text-transform: uppercase;
   cursor: pointer;
   z-index: 10;
@@ -763,7 +795,6 @@ body.modal-open {
   width: 100%;
   color: white;
   font-size: 14px;
-  font-family: 'Space Mono', monospace;
   text-transform: uppercase;
   gap: 50px;
 }
